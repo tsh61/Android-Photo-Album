@@ -22,5 +22,7 @@ public class MainActivity extends AppCompatActivity {
         rename = findViewById(R.id.rename);
         open = findViewById(R.id.open);
         search = findViewById(R.id.search);
+
+
     }
 }
