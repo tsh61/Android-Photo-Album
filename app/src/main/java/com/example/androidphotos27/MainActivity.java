@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         });
         onOpenClick();
         onAddClick();
+        onDeleteClick();
+        onRenameClick();
     }
 
     protected void onAddClick(){
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         String nameInput = input.getText().toString();
                         if(nameInput.trim().isEmpty()){
                             AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
-                            error.setTitle("An album must be given a name.");
+                            error.setMessage("An album must be given a name.");
                             error.show();
                             return;
                         }
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             for(Album alb : mainList.albList) {
                                 if (nameInput.equals(alb.getName())) {
                                     AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
-                                    error.setTitle("An album with this name already exists.");
+                                    error.setMessage("An album with this name already exists.");
                                     error.show();
                                     return;
                                 }
@@ -108,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void onOpenClick(){
-        index = -1;
         open.setOnClickListener(new View.OnClickListener(){
            @Override
             public void onClick(View v){
@@ -119,5 +120,89 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+    protected void onDeleteClick(){
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(index == -1){
+                    AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
+                    error.setMessage("Please select an album to be deleted.");
+                    error.show();
+                    return;
+                }
+                else{
+                    AlertDialog.Builder msg = new AlertDialog.Builder(MainActivity.this);
+                    msg.setMessage("Are you sure you want to delete " + mainList.albList.get(index).toString() + "? This action is permanent.");
+                    msg.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mainList.albList.remove(index);
+                            index = -1;
+                            adapter.notifyDataSetChanged();
+                            mainList.write(MainActivity.this);
+                        }
+                    });
+                    msg.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    msg.show();
+                }
+            }
+        });
+    }
+    protected void onRenameClick(){
+        rename.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(index == -1){
+                    AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
+                    error.setMessage("Please select an album to be renamed.");
+                    error.show();
+                    return;
+                }
+                else{
+                    AlertDialog.Builder edit = new AlertDialog.Builder(MainActivity.this);
+                    edit.setTitle("Enter a new name for the album.");
+                    final EditText input = new EditText(MainActivity.this);
+                    edit.setView(input);
+                    edit.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String editInput = input.getText().toString();
+                            if(editInput.trim().isEmpty()){
+                                AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
+                                error.setMessage("The album must be given a name.");
+                                error.show();
+                                return;
+                            }
+                            else{
+                                for(Album alb : mainList.albList){
+                                    if(editInput.equals(alb.getName())){
+                                        AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
+                                        error.setMessage("An album with this name already exists.");
+                                        error.show();
+                                        return;
+                                    }
+                                }
+                            }
+                            mainList.albList.get(index).setName(editInput);
+                            adapter.notifyDataSetChanged();
+                            mainList.write(MainActivity.this);
+                        }
+                    });
+                    edit.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    edit.show();
+                }
+            }
+        });
     }
 }
