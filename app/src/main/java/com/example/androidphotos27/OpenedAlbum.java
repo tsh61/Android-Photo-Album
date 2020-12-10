@@ -13,6 +13,7 @@ import android.view.View;
 
 public class OpenedAlbum extends AppCompatActivity {
 
+    public static final String ALBUM_ID = "albumID";
     private int albumID;
 
     @Override
@@ -24,9 +25,11 @@ public class OpenedAlbum extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent();
-        albumID = intent.getIntExtra(MainActivity.ALBUM_ID, -1);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            albumID = bundle.getInt(ALBUM_ID);
+        }
 
-        this.setTitle("Photos in " + MainActivity.mainList.albList.get(albumID).toString());
+        this.setTitle(MainActivity.mainList.albList.get(albumID).toString());
     }
 }

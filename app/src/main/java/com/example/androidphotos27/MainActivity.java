@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button add, delete, rename, open, search;
     private ListView albumList;
-    final static String ALBUM_ID = "com.example.androidphotos27.ALBUM_ID";
     public static AlbumList mainList;
     private int index = -1;
     private ArrayAdapter<Album> adapter;
@@ -114,9 +113,17 @@ public class MainActivity extends AppCompatActivity {
         open.setOnClickListener(new View.OnClickListener(){
            @Override
             public void onClick(View v){
-                Intent startIntent = new Intent(MainActivity.this, OpenedAlbum.class);
-                startIntent.putExtra(ALBUM_ID, index);
-                startActivity(startIntent);
+               if(index == -1){
+                   AlertDialog.Builder error = new AlertDialog.Builder(MainActivity.this);
+                   error.setMessage("Please select an album to open.");
+                   error.show();
+                   return;
+               }
+               Bundle bundle = new Bundle();
+               bundle.putInt(OpenedAlbum.ALBUM_ID, index);
+               Intent intent = new Intent(MainActivity.this, OpenedAlbum.class);
+               intent.putExtras(bundle);
+               startActivity(intent);
             }
 
         });
