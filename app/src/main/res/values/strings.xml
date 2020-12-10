@@ -16,4 +16,11 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="moveToAlbum">Move to Album</string>
     <string name="display">Display</string>
+    <string name="title_activity_search">Search</string>
+    <string name="orSearch">Location OR Person</string>
+    <string name="locationSearch">Search by Location</string>
+    <string name="personSearch">Search by Person</string>
+    <string name="andSearch">Location AND Person</string>
+    <string name="locationHint">Location</string>
+    <string name="personHint">Person</string>
 </resources>

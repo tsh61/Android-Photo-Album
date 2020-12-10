@@ -43,24 +43,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="144dp"
-        android:layout_marginTop="405dp"
+        android:layout_marginTop="408dp"
         android:layout_marginEnd="144dp"
         android:text="@string/display"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/thumbnails"
-        android:layout_width="298dp"
-        android:layout_height="373dp"
-        android:layout_marginStart="43dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="43dp"
+    <GridView
+        android:id="@+id/searchThumbnails"
+        android:layout_width="369dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="21dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.gridlayout.widget.GridLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

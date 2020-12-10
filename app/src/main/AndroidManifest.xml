@@ -10,13 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidPhotos27">
         <activity
+            android:name=".Search"
+            android:label="@string/title_activity_search"
+            android:theme="@style/Theme.AndroidPhotos27.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.androidphotos27.MainActivity" />
+        </activity>
+        <activity
             android:name=".OpenedAlbum"
             android:label="@string/title_activity_opened_album"
             android:parentActivityName=".MainActivity"
             android:theme="@style/Theme.AndroidPhotos27.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.androidphotos27.MainActivity"></meta-data>
+                android:value="com.example.androidphotos27.MainActivity" />
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

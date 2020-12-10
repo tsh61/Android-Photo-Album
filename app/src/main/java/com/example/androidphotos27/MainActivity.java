@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         onAddClick();
         onDeleteClick();
         onRenameClick();
+        onSearchClick();
     }
 
     protected void onAddClick(){
@@ -210,6 +211,15 @@ public class MainActivity extends AppCompatActivity {
                     });
                     edit.show();
                 }
+            }
+        });
+    }
+    protected void onSearchClick(){
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Search.class);
+                startActivity(intent);
             }
         });
     }

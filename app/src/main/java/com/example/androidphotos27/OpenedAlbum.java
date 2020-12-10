@@ -1,20 +1,19 @@
 package com.example.androidphotos27;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
+import android.widget.Button;
+import android.widget.GridView;
 
 public class OpenedAlbum extends AppCompatActivity {
 
     public static final String ALBUM_ID = "albumID";
     private int albumID;
+    private Button add, delete, display, move;
+    private GridView thumbnails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,6 @@ public class OpenedAlbum extends AppCompatActivity {
         setContentView(R.layout.opened_album_display);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
@@ -31,5 +29,11 @@ public class OpenedAlbum extends AppCompatActivity {
         }
 
         this.setTitle(MainActivity.mainList.albList.get(albumID).toString());
+
+        add = findViewById(R.id.addPhoto);
+        delete = findViewById(R.id.deletePhoto);
+        display = findViewById(R.id.displayPhoto);
+        move = findViewById(R.id.movePhoto);
+        thumbnails = findViewById(R.id.searchThumbnails);
     }
 }
