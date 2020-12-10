@@ -1,5 +1,6 @@
 package com.example.androidphotos27;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -12,6 +13,8 @@ import android.view.View;
 
 public class OpenedAlbum extends AppCompatActivity {
 
+    private int albumID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +23,10 @@ public class OpenedAlbum extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Intent intent = getIntent();
+        albumID = intent.getIntExtra(MainActivity.ALBUM_ID, -1);
+
+        this.setTitle("Photos in " + MainActivity.mainList.albList.get(albumID).toString());
     }
 }
