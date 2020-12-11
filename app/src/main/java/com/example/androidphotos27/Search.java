@@ -13,7 +13,7 @@ public class Search extends AppCompatActivity {
 
 private Button loc_search, per_search, and_search, or_search;
 private EditText location, person;
-private ArrayList<Photo> photos_arr =new ArrayList<Photo>();
+private ArrayList<Photo> photos_arr =new ArrayList<>();
 private ListView searchResults;
 private GridViewAdapter imageAdapter;
 
@@ -117,7 +117,7 @@ imageAdapter.notifyDataSetChanged();
 
 if(person.getText().toString().trim().isEmpty() || location.getText().toString().trim().isEmpty()){
 androidx.appcompat.app.AlertDialog.Builder error = new androidx.appcompat.app.AlertDialog.Builder(Search.this);
-error.setMessage("Please specify both, a person and location.");
+error.setMessage("Please specify both a person and a location.");
 error.show();
 return;
 }
@@ -141,7 +141,7 @@ imageAdapter.notifyDataSetChanged();
 
 if(person.getText().toString().trim().isEmpty() || location.getText().toString().trim().isEmpty()){
 androidx.appcompat.app.AlertDialog.Builder error = new androidx.appcompat.app.AlertDialog.Builder(Search.this);
-error.setMessage("Please specify both, a person and location.");
+error.setMessage("Please specify both a person and location.");
 error.show();
 return;
 }
@@ -169,10 +169,10 @@ for(int j = 0; j < num_of_photos; j++) {
 int num_of_tags = mainList.albList.get(i).getPhotos().get(j).getTags().size();
 for (int k = 0; k < num_of_tags; k++) {
 
-Boolean temp2 = mainList.albList.get(i).getPhotos().get(j).getTags().get(k).toString().startsWith(loc_value.toString());
-Boolean temp4 = mainList.albList.get(i).getPhotos().get(j).getTags().get(k).toString().startsWith(per_value.toString());
+boolean temp2 = mainList.albList.get(i).getPhotos().get(j).getTags().get(k).toString().startsWith(loc_value.toString());
+boolean temp4 = mainList.albList.get(i).getPhotos().get(j).getTags().get(k).toString().startsWith(per_value.toString());
 
-if (type == "or") {
+if (type.equals("or")) {
 
 if (temp2) {
 photos_arr.add(mainList.albList.get(i).getPhotos().get(j));
@@ -185,7 +185,7 @@ imageAdapter.notifyDataSetChanged();
 break;
 }
 
-} else if (type == "and") {
+} else if (type.equals("and")) {
 
 if (temp2){
 check1 = 1;

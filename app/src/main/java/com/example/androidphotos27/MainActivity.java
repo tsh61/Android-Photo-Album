@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             mainList = new AlbumList();
         }
         if(mainList.albList == null){
-            mainList.albList = new ArrayList<Album>();
+            mainList.albList = new ArrayList<>();
         }
 
         add = findViewById(R.id.add);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         open = findViewById(R.id.open);
         search = findViewById(R.id.search);
         albumList = findViewById(R.id.albList);
-        adapter = new ArrayAdapter<Album>(this, R.layout.album, mainList.albList);
+        adapter = new ArrayAdapter<>(this, R.layout.album, mainList.albList);
         albumList.setAdapter(adapter);
         albumList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -58,14 +58,14 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        onOpenClick();
-        onAddClick();
-        onDeleteClick();
-        onRenameClick();
-        onSearchClick();
+        onOpenAlbum();
+        onAddAlbum();
+        onDeleteAlbum();
+        onRenameAlbum();
+        onSearch();
     }
 
-    protected void onAddClick(){
+    protected void onAddAlbum(){
         add.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void onOpenClick(){
+    protected void onOpenAlbum(){
         open.setOnClickListener(new View.OnClickListener(){
            @Override
             public void onClick(View v){
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    protected void onDeleteClick(){
+    protected void onDeleteAlbum(){
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    protected void onRenameClick(){
+    protected void onRenameAlbum(){
         rename.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    protected void onSearchClick(){
+    protected void onSearch(){
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

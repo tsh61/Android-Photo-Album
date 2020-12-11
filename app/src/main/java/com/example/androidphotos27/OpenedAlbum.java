@@ -52,7 +52,7 @@ public class OpenedAlbum extends AppCompatActivity {
         delete = findViewById(R.id.deletePhoto);
         display = findViewById(R.id.displayPhoto);
         move = findViewById(R.id.movePhoto);
-        thumbnails = findViewById(R.id.searchThumbnails);
+        thumbnails = findViewById(R.id.photoThumbnails);
         gridAdapter = new GridViewAdapter(OpenedAlbum.this, MainActivity.mainList.albList.get(albumID).getPhotos());
         thumbnails.setAdapter(gridAdapter);
         thumbnails.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
@@ -96,7 +96,7 @@ public class OpenedAlbum extends AppCompatActivity {
                         fName = cur.getString(0);
                     }
                 }catch(Exception exception){
-
+                    exception.printStackTrace();
                 }
             }
             pic.setFileName(fName);
@@ -184,7 +184,7 @@ public class OpenedAlbum extends AppCompatActivity {
                                     gridAdapter.notifyDataSetChanged();
                                 }
                             }
-                            if (trigger == false) {
+                            if (!trigger) {
                                 error.setMessage("This album does not exist.");
                                 error.show();
                                 return;

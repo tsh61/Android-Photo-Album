@@ -50,22 +50,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="424dp"
-        android:text="@string/addTag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/deleteTag"
-        android:layout_width="wrap_content"
+        android:layout_width="106dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="424dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="422dp"
         android:text="@string/deleteTag"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -76,8 +66,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="190dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="191dp"
+        android:layout_marginEnd="190dp"
         android:text="@string/tagsLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addLocation"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="422dp"
+        android:text="@string/addLocation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addPerson"
+        android:layout_width="119dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="422dp"
+        android:layout_marginEnd="141dp"
+        android:text="@string/addPerson"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

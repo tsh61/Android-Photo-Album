@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <GridView
-        android:id="@+id/searchThumbnails"
+        android:id="@+id/photoThumbnails"
         android:layout_width="369dp"
         android:layout_height="350dp"
         android:layout_marginStart="21dp"

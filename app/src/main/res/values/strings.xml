@@ -29,4 +29,6 @@
     <string name="addTag">Add Tag</string>
     <string name="deleteTag">Delete Tag</string>
     <string name="tagsLabel">Tags</string>
+    <string name="addLocation">Add Location</string>
+    <string name="addPerson">Add Person</string>
 </resources>
