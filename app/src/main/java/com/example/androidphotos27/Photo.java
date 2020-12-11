@@ -49,6 +49,10 @@ public class Photo implements Serializable{
         }
     }
     public ArrayList<Tag> getTags() {
+        if(tagList == null){
+            tagList = new ArrayList<Tag>();
+            return tagList;
+        }
         return tagList;
     }
 }

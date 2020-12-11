@@ -24,4 +24,9 @@
     <string name="locationHint">Location</string>
     <string name="personHint">Person</string>
     <string name="title_activity_slideshow">Slideshow</string>
+    <string name="prevPhoto">Previous</string>
+    <string name="nextPhoto">Next</string>
+    <string name="addTag">Add Tag</string>
+    <string name="deleteTag">Delete Tag</string>
+    <string name="tagsLabel">Tags</string>
 </resources>
