@@ -29,8 +29,7 @@ public class Slideshow extends AppCompatActivity {
     private int photoID;
     //tags
     private int index = -1;
-    private Button add;
-    private Button delete;
+    private Button delete, addLocation, addPerson;
     private ListView tags;
     private ArrayAdapter<Tag> tagArrayAdapter;
 
@@ -55,7 +54,9 @@ public class Slideshow extends AppCompatActivity {
             img.setImageBitmap(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getPic());
         }
 
-        add = findViewById(R.id.addTag);
+        //add = findViewById(R.id.addTag);
+        addLocation = findViewById(R.id.addLocation);
+        addPerson = findViewById(R.id.addPerson);
         delete = findViewById(R.id.deleteTag);
         next = findViewById(R.id.nextPhoto);
         previous = findViewById(R.id.prevPhoto);
@@ -75,12 +76,14 @@ public class Slideshow extends AppCompatActivity {
         });
 
 
-        onAddTag();
+        //onAddTag();
         onDeleteTag();
         onNext();
         onPrevious();
+        onAddLocation();
+        onAddPerson();
     }
-    protected void onAddTag(){
+    /*protected void onAddTag(){
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,14 +141,105 @@ public class Slideshow extends AppCompatActivity {
                 msg.show();
             }
         });
+    }*/
+
+    protected void onAddLocation(){
+        addLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder msg = new AlertDialog.Builder(Slideshow.this);
+                msg.setTitle("Enter a location tag.");
+                final EditText input = new EditText(Slideshow.this);
+                msg.setView(input);
+
+                msg.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String inputString = input.getText().toString();
+                        if(inputString.trim().isEmpty()){
+                            AlertDialog.Builder error = new AlertDialog.Builder(Slideshow.this);
+                            error.setMessage("Please enter the tag information.");
+                            error.show();
+                            return;
+                        }
+                        else{
+                            for(Tag tag : MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getTags()){
+                                if(tag.getName().equals("Location") && tag.getValue().equals(inputString)){
+                                    AlertDialog.Builder error = new AlertDialog.Builder(Slideshow.this);
+                                    error.setMessage("A location tag with this name already exists for this photo.");
+                                    error.show();
+                                    return;
+                                }
+                            }
+                            MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).addTag("Location", inputString);
+                            tagArrayAdapter.notifyDataSetChanged();
+                            MainActivity.mainList.write(Slideshow.this);
+                        }
+                    }
+                });
+                msg.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                msg.show();
+            }
+        });
     }
+
+    protected void onAddPerson(){
+        addPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder msg = new AlertDialog.Builder(Slideshow.this);
+                msg.setTitle("Enter a person tag.");
+                final EditText input = new EditText(Slideshow.this);
+                msg.setView(input);
+
+                msg.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String inputString = input.getText().toString();
+                        if(inputString.trim().isEmpty()){
+                            AlertDialog.Builder error = new AlertDialog.Builder(Slideshow.this);
+                            error.setMessage("Please enter the tag information.");
+                            error.show();
+                            return;
+                        }
+                        else{
+                            for(Tag tag : MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getTags()){
+                                if(tag.getName().equals("Person") && tag.getValue().equals(inputString)){
+                                    AlertDialog.Builder error = new AlertDialog.Builder(Slideshow.this);
+                                    error.setMessage("A person tag with this name already exists for this photo.");
+                                    error.show();
+                                    return;
+                                }
+                            }
+                            MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).addTag("Person", inputString);
+                            tagArrayAdapter.notifyDataSetChanged();
+                            MainActivity.mainList.write(Slideshow.this);
+                        }
+                    }
+                });
+                msg.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                msg.show();
+            }
+        });
+    }
+
     protected void onDeleteTag(){
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(index == -1){
                     android.app.AlertDialog.Builder error = new android.app.AlertDialog.Builder(Slideshow.this);
-                    error.setTitle("Please select a tag to delete.");
+                    error.setMessage("Please select a tag to delete.");
                     error.show();
                     return;
                 }
