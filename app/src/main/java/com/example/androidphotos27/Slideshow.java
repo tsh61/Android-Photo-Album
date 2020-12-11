@@ -1,6 +1,7 @@
 package com.example.androidphotos27;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -44,14 +45,21 @@ public class Slideshow extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         final ImageView img = (ImageView) findViewById(R.id.imageView);
+        Bundle bundle = getIntent().getExtras();
+        if(bundle != null){
+            albumID = bundle.getInt(ALBUM_ID);
+            photoID = bundle.getInt(PHOTO_ID);
+        }
+        if(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID) != null){
+            img.setImageBitmap(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getPic());
+        }
 
         add = findViewById(R.id.addTag);
         delete = findViewById(R.id.deleteTag);
         next = findViewById(R.id.nextPhoto);
         previous = findViewById(R.id.prevPhoto);
-        tags = (ListView) findViewById(R.id.tagList);
+        tags = findViewById(R.id.tagList);
         tags.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         tagArrayAdapter = new ArrayAdapter<Tag>(Slideshow.this, R.layout.album, MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getTags());
         tags.setAdapter(tagArrayAdapter);
@@ -66,16 +74,11 @@ public class Slideshow extends AppCompatActivity {
             }
         });
 
-        Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-            albumID = bundle.getInt(ALBUM_ID);
-            photoID = bundle.getInt(PHOTO_ID);
-        }
-        if(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID) != null){
-            img.setImageBitmap(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getPic());
-        }
+
         onAddTag();
         onDeleteTag();
+        onNext();
+        onPrevious();
     }
     protected void onAddTag(){
         add.setOnClickListener(new View.OnClickListener() {
@@ -112,13 +115,15 @@ public class Slideshow extends AppCompatActivity {
                         else{
                             if(!inputText1.isEmpty()){
                                 MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).addTag("Location", inputText1);
-                                MainActivity.mainList.write(Slideshow.this);
                                 tagArrayAdapter.notifyDataSetChanged();
+                                MainActivity.mainList.write(Slideshow.this);
+
                             }
                             else{
                                 MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).addTag("Person", inputText2);
-                                MainActivity.mainList.write(Slideshow.this);
                                 tagArrayAdapter.notifyDataSetChanged();
+                                MainActivity.mainList.write(Slideshow.this);
+
                             }
 
                         }
@@ -165,6 +170,42 @@ public class Slideshow extends AppCompatActivity {
                     });
                     msg.show();
                 }
+            }
+        });
+    }
+    protected void onNext(){
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MainActivity.mainList.albList.get(albumID).getPhotos().size() <= photoID + 1){
+                    return;
+                }
+                else{
+                    Slideshow.super.finish();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt(Slideshow.ALBUM_ID, albumID);
+                    bundle.putInt(Slideshow.PHOTO_ID, photoID + 1);
+                    Intent intent = new Intent(Slideshow.this, Slideshow.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+    protected void onPrevious(){
+        previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(photoID - 1 < 0){
+                    return;
+                }
+                Slideshow.super.finish();
+                Bundle bundle = new Bundle();
+                bundle.putInt(Slideshow.ALBUM_ID, albumID);
+                bundle.putInt(Slideshow.PHOTO_ID, photoID - 1);
+                Intent intent = new Intent(Slideshow.this, Slideshow.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

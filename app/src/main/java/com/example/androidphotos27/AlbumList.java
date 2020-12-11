@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AlbumList implements Serializable {
-    ArrayList<Album> albList;
+    ArrayList<Album> albList = new ArrayList<Album>();
     public static final long serialVersionUID = 1L;
     public static final String file = "albums.serial";
 

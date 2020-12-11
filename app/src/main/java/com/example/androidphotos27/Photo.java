@@ -1,6 +1,7 @@
 package com.example.androidphotos27;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class Photo implements Serializable{
 
     private String fileName = "";
-    private ArrayList<Tag> tagList;
+    private ArrayList<Tag> tagList = new ArrayList<Tag>();
     transient Bitmap pic;
 
     public Photo(Bitmap pic) {

@@ -100,12 +100,11 @@ public class OpenedAlbum extends AppCompatActivity {
                 }
             }
             pic.setFileName(fName);
-            thumbnails.setAdapter(gridAdapter);
-            gridAdapter.notifyDataSetChanged();
+
             MainActivity.mainList.albList.get(albumID).getPhotos().add(pic);
             MainActivity.mainList.write(OpenedAlbum.this);
             //gridAdapter.notifyDataSetChanged();
-            //thumbnails.setAdapter(gridAdapter);
+            thumbnails.setAdapter(gridAdapter);
         }
     }
 
@@ -134,9 +133,9 @@ public class OpenedAlbum extends AppCompatActivity {
                     msg.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            index = -1;
                             MainActivity.mainList.albList.get(albumID).getPhotos().remove(index);
                             MainActivity.mainList.write(OpenedAlbum.this);
+                            index = -1;
                             gridAdapter.notifyDataSetChanged();
                         }
                     });

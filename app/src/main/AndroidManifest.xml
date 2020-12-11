@@ -15,7 +15,7 @@
             android:theme="@style/Theme.AndroidPhotos27.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.androidphotos27.MainActivity" />
+                android:value="com.example.androidphotos27.OpenedAlbum" />
         </activity>
         <activity
             android:name=".Search"

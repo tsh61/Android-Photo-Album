@@ -20,15 +20,14 @@ public class GridViewAdapter extends ArrayAdapter {
         this.context = context;
         this.thumbnails = thumbnails;
     }
-
+    @Override
     public View getView(int pos, View curr, ViewGroup parent){
         if(curr == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            curr = (View) inflater.inflate(R.layout.thumb_item, parent, false);
-
+            curr = inflater.inflate(R.layout.thumb_item, parent, false);
         }
-        ImageView image = (ImageView) curr.findViewById(R.id.thumbDisplay);
-        TextView name = (TextView) curr.findViewById(R.id.thumbName);
+        ImageView image = curr.findViewById(R.id.thumbDisplay);
+        TextView name = curr.findViewById(R.id.thumbName);
         Photo pic = (Photo) thumbnails.get(pos);
         image.setImageBitmap(pic.getPic());
         name.setText(pic.getFileName());
