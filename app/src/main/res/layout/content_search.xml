@@ -21,13 +21,10 @@
         android:layout_height="288dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="21dp"
-        app:layout_constraintBottom_toTopOf="@+id/personText"
+        android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.166" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/locationSearch"
@@ -51,7 +48,7 @@
         android:id="@+id/locationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="292dp"
         android:ems="10"
         android:hint="@string/locationHint"
         android:inputType="textPersonName"
@@ -62,7 +59,7 @@
         android:id="@+id/personText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
+        android:layout_marginTop="352dp"
         android:ems="10"
         android:hint="@string/personHint"
         android:inputType="textPersonName"

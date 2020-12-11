@@ -29,6 +29,13 @@ public class Photo implements Serializable{
 //		return pic;
 
 //	}
+    public String getFileName(){
+        return fileName;
+    }
+
+    public void setFileName(String fileName){
+        this.fileName = fileName;
+    }
 
     public void addTag(String name, String value) {
         tagList.add(new Tag(name, value));

@@ -120,11 +120,13 @@ public class MainActivity extends AppCompatActivity {
                    error.show();
                    return;
                }
-               Bundle bundle = new Bundle();
-               bundle.putInt(OpenedAlbum.ALBUM_ID, index);
-               Intent intent = new Intent(MainActivity.this, OpenedAlbum.class);
-               intent.putExtras(bundle);
-               startActivity(intent);
+               else {
+                   Bundle bundle = new Bundle();
+                   bundle.putInt(OpenedAlbum.ALBUM_ID, index);
+                   Intent intent = new Intent(MainActivity.this, OpenedAlbum.class);
+                   intent.putExtras(bundle);
+                   startActivity(intent);
+               }
             }
 
         });
