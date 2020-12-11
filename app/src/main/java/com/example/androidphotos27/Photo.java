@@ -41,12 +41,8 @@ public class Photo implements Serializable{
         tagList.add(new Tag(name, value));
     }
 
-    public void removeTag(String name, String value) {
-        for(Tag i : tagList) {
-            if(i.getName().equals(name) && i.getValue().equals(value)) {
-                tagList.remove(i);
-            }
-        }
+    public void removeTag(int index) {
+        tagList.remove(index);
     }
     public ArrayList<Tag> getTags() {
         if(tagList == null){

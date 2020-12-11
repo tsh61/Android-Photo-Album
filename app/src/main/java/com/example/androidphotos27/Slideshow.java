@@ -75,6 +75,7 @@ public class Slideshow extends AppCompatActivity {
             img.setImageBitmap(MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).getPic());
         }
         onAddTag();
+        onDeleteTag();
     }
     protected void onAddTag(){
         add.setOnClickListener(new View.OnClickListener() {
@@ -133,12 +134,38 @@ public class Slideshow extends AppCompatActivity {
             }
         });
     }
-    /*protected void onDeleteTag(){
+    protected void onDeleteTag(){
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(index == -1){
+                    android.app.AlertDialog.Builder error = new android.app.AlertDialog.Builder(Slideshow.this);
+                    error.setTitle("Please select a tag to delete.");
+                    error.show();
+                    return;
+                }
+                else{
+                    AlertDialog.Builder msg = new AlertDialog.Builder(Slideshow.this);
+                    msg.setTitle("Are you sure you want to delete this tag? This action is permanent.");
 
+                    msg.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.mainList.albList.get(albumID).getPhotos().get(photoID).removeTag(index);
+                            index = -1;
+                            tagArrayAdapter.notifyDataSetChanged();
+                            MainActivity.mainList.write(Slideshow.this);
+                        }
+                    });
+                    msg.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    msg.show();
+                }
             }
         });
-    }*/
+    }
 }
