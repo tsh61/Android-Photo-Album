@@ -15,7 +15,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button add, delete, rename, open, search;

@@ -23,7 +23,10 @@ import android.widget.ImageView;
 
 import java.io.File;
 import java.util.Objects;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class OpenedAlbum extends AppCompatActivity {
 
     public static final String ALBUM_ID = "albumID";
@@ -39,7 +42,7 @@ public class OpenedAlbum extends AppCompatActivity {
         setContentView(R.layout.opened_album_display);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){

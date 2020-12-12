@@ -19,7 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class Slideshow extends AppCompatActivity {
 
     public static final String ALBUM_ID = "albumID";
@@ -43,7 +46,7 @@ public class Slideshow extends AppCompatActivity {
         setContentView(R.layout.activity_slideshow);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final ImageView img = findViewById(R.id.imageView);
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){

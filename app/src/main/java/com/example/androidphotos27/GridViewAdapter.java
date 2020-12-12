@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class GridViewAdapter extends ArrayAdapter {
     private Context context;
     private ArrayList thumbnails;

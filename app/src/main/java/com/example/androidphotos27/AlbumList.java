@@ -9,7 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class AlbumList implements Serializable {
     ArrayList<Album> albList = new ArrayList<Album>();
     public static final long serialVersionUID = 1L;

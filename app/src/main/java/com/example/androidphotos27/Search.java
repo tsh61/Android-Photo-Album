@@ -10,7 +10,10 @@ import android.widget.GridView;
 import android.widget.ListView;
 import java.util.ArrayList;
 import static com.example.androidphotos27.MainActivity.mainList;
-
+/*
+ * @author Travis Harrell (tsh61)
+ * @author Elizaveta Belaya (edb81)
+ */
 public class Search extends AppCompatActivity {
 
 private Button loc_search, per_search, and_search, or_search;
@@ -25,7 +28,7 @@ super.onCreate(savedInstanceState);
 setContentView(R.layout.activity_search);
 Toolbar toolbar = findViewById(R.id.toolbar);
 setSupportActionBar(toolbar);
-getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 this.setTitle("Search");
 
