@@ -44,7 +44,7 @@ public class Slideshow extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        final ImageView img = (ImageView) findViewById(R.id.imageView);
+        final ImageView img = findViewById(R.id.imageView);
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
             albumID = bundle.getInt(ALBUM_ID);
@@ -74,7 +74,6 @@ public class Slideshow extends AppCompatActivity {
                 tagArrayAdapter.notifyDataSetChanged();
             }
         });
-
 
         //onAddTag();
         onDeleteTag();

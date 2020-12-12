@@ -1,10 +1,12 @@
 package com.example.androidphotos27;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 import java.util.ArrayList;
 import static com.example.androidphotos27.MainActivity.mainList;
@@ -14,8 +16,8 @@ public class Search extends AppCompatActivity {
 private Button loc_search, per_search, and_search, or_search;
 private EditText location, person;
 private ArrayList<Photo> photos_arr =new ArrayList<>();
-private ListView searchResults;
 private GridViewAdapter imageAdapter;
+private GridView thumbnails;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -27,16 +29,16 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 this.setTitle("Search");
 
-searchResults=findViewById(R.id.searchResults);
 location = findViewById(R.id.locationText);
 person = findViewById(R.id.personText);
 loc_search = findViewById(R.id.locationSearch);
 per_search = findViewById(R.id.personSearch);
 and_search = findViewById(R.id.andSearch);
 or_search = findViewById(R.id.orSearch);
+thumbnails = findViewById(R.id.photoThumbnails);
 
 imageAdapter = new GridViewAdapter(this, photos_arr);
-searchResults.setAdapter(imageAdapter);
+thumbnails.setAdapter(imageAdapter);
 
 location_search();
 person_search();
@@ -73,7 +75,7 @@ photos_arr.clear();
 imageAdapter.notifyDataSetChanged();
 
 if(person.getText().toString().trim().isEmpty()){
-androidx.appcompat.app.AlertDialog.Builder error = new androidx.appcompat.app.AlertDialog.Builder(Search.this);
+AlertDialog.Builder error = new AlertDialog.Builder(Search.this);
 error.setMessage("Please specify a person.");
 error.show();
 return;
@@ -116,7 +118,7 @@ photos_arr.clear();
 imageAdapter.notifyDataSetChanged();
 
 if(person.getText().toString().trim().isEmpty() || location.getText().toString().trim().isEmpty()){
-androidx.appcompat.app.AlertDialog.Builder error = new androidx.appcompat.app.AlertDialog.Builder(Search.this);
+AlertDialog.Builder error = new AlertDialog.Builder(Search.this);
 error.setMessage("Please specify both a person and a location.");
 error.show();
 return;
@@ -140,7 +142,7 @@ photos_arr.clear();
 imageAdapter.notifyDataSetChanged();
 
 if(person.getText().toString().trim().isEmpty() || location.getText().toString().trim().isEmpty()){
-androidx.appcompat.app.AlertDialog.Builder error = new androidx.appcompat.app.AlertDialog.Builder(Search.this);
+AlertDialog.Builder error = new AlertDialog.Builder(Search.this);
 error.setMessage("Please specify both a person and location.");
 error.show();
 return;
@@ -160,13 +162,13 @@ protected void test2(Tag loc_value, Tag per_value, String type){
 
 int num_of_albums = mainList.albList.size();
 int i = 0;
-int check1 = 0;
-int check2 = 0;
 
 while(i<num_of_albums){
 int num_of_photos = mainList.albList.get(i).getPhotos().size();
 for(int j = 0; j < num_of_photos; j++) {
 int num_of_tags = mainList.albList.get(i).getPhotos().get(j).getTags().size();
+int check1 = 0;
+int check2 = 0;
 for (int k = 0; k < num_of_tags; k++) {
 
 boolean temp2 = mainList.albList.get(i).getPhotos().get(j).getTags().get(k).toString().startsWith(loc_value.toString());

@@ -18,6 +18,7 @@
                 android:value="com.example.androidphotos27.OpenedAlbum" />
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".Search"
             android:label="@string/title_activity_search"
             android:theme="@style/Theme.AndroidPhotos27.NoActionBar">
